@@ -4,6 +4,8 @@ import { PoweredFileSystem } from "pwd-fs";
 import { loadConfig } from "./lib/deps";
 import { makeNewCommand } from "./commands/new";
 import { makePublishCommand } from "./commands/publish";
+import { makeUpdateCommand } from "./commands/update";
+import { makeUnPublishCommand } from "./commands/retract";
 
 async function main() {
   const pfs = new PoweredFileSystem();
@@ -15,6 +17,8 @@ async function main() {
     cmds: {
       new: makeNewCommand(deps),
       publish: makePublishCommand(deps),
+      update: makeUpdateCommand(deps),
+      unpublish: makeUnPublishCommand(deps),
     },
   });
 

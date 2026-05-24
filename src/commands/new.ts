@@ -3,13 +3,13 @@ import path from "node:path";
 import slugify from "@sindresorhus/slugify";
 import filenamify from "filenamify";
 import matter from "gray-matter";
-import { isCancel, text } from "@clack/prompts";
+import { isCancel, text, intro, outro } from "@clack/prompts";
 import type { Config, Deps } from "../lib/deps";
 
 export function makeNewCommand({ config, pfs }: Deps) {
   return command({
     name: "new",
-    description: "Create a new markdown file",
+    description: "Create a new post",
     args: {
       new: restPositionals({
         type: string,
@@ -18,6 +18,7 @@ export function makeNewCommand({ config, pfs }: Deps) {
       }),
     },
     handler: async ({ new: titleArray }) => {
+      intro("Create a new post");
       let title: string;
       if (titleArray.length === 0) {
         title = await generateTitle();
@@ -47,7 +48,7 @@ async function generateFrontmatter(
   const data = {
     [config.titleKey]: title,
     [config.publishedAtKey]: now,
-    [config.modifiedAtKey]: now,
+    // [config.modifiedAtKey]: now,
     [config.authorKey]: config.author,
     [config.draftKey]: true,
     [config.descriptionKey]: description,
