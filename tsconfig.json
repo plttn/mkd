@@ -17,7 +17,8 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "types": ["node"]
+    "types": ["node"],
+    "ignoreDeprecations": "6.0",
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
 }

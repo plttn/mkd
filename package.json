@@ -4,24 +4,25 @@
   "description": "",
   "scripts": {
     "dev": "tsx ./src/index.ts",
-    "build": "tsc --build --clean && tsc --build"
+    "build": "tsup",
+    "prepublishOnly": "pnpm run build"
   },
   "type": "module",
   "bin": {
     "mkd": "dist/index.js"
   },
   "files": [
-    "dist/**/**",
-    "docs/**/**",
-    "!**/*.spec.*",
-    "!**/*.json",
-    "!**/*.tsbuildinfo",
-    "LICENSE",
-    "README.md"
+    "dist"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@types/node": "^25.9.1",
     "prettier": "3.8.3",
+    "tsup": "^8.5.1",
     "tsx": "^4.22.3",
     "typescript": "^6.0.3"
   },
