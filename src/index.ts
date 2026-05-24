@@ -5,7 +5,8 @@ import { loadConfig } from "./lib/deps";
 import { makeNewCommand } from "./commands/new";
 import { makePublishCommand } from "./commands/publish";
 import { makeUpdateCommand } from "./commands/update";
-import { makeUnPublishCommand } from "./commands/retract";
+import { makeUnPublishCommand } from "./commands/unpublish";
+import { makeInitCommand } from "./commands/init";
 
 async function main() {
   const pfs = new PoweredFileSystem();
@@ -19,6 +20,7 @@ async function main() {
       publish: makePublishCommand(deps),
       update: makeUpdateCommand(deps),
       unpublish: makeUnPublishCommand(deps),
+      init: makeInitCommand(deps),
     },
   });
 

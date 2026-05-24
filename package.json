@@ -46,5 +46,9 @@
     "filenamify": "^7.0.1",
     "gray-matter": "^4.0.3",
     "pwd-fs": "^3.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plttn/mkd.git"
   }
 }
