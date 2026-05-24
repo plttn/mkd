@@ -1,0 +1,44 @@
+{
+    "name": "mkd",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "dev": "tsx src/index.ts",
+        "build": "tsc --build --clean && tsc --build"
+    },
+    "type": "module",
+    "bin": {
+        "mkd": "dist/index.js"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "sequoia.schema.json"
+    ],
+    "main": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "^11.2.1",
+            "onFail": "download"
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^25.9.1",
+        "tsx": "^4.22.3",
+        "typescript": "^6.0.3"
+    },
+    "dependencies": {
+        "@clack/prompts": "^1.4.0",
+        "@sindresorhus/slugify": "^3.0.0",
+        "cmd-ts": "^0.15.0",
+        "filenamify": "^7.0.1",
+        "gray-matter": "^4.0.3"
+    }
+}
