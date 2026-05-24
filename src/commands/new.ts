@@ -3,7 +3,8 @@ import path from "node:path";
 import slugify from "@sindresorhus/slugify";
 import filenamify from "filenamify";
 import matter from "gray-matter";
-import type { Deps } from "../deps";
+import { isCancel, text } from "@clack/prompts";
+import type { Config, Deps } from "../lib/deps";
 
 export function makeNewCommand({ config, pfs }: Deps) {
   return command({
@@ -17,10 +18,18 @@ export function makeNewCommand({ config, pfs }: Deps) {
       }),
     },
     handler: async ({ new: titleArray }) => {
-      const title = titleArray.join(" ");
+      let title: string;
+      if (titleArray.length === 0) {
+        title = await generateTitle();
+        if (title === "") {
+          return;
+        }
+      } else {
+        title = titleArray.join(" ");
+      }
       const slug = slugify(title);
       const fileName = filenamify(slug);
-      const frontmatter = generateFrontmatter(title);
+      const frontmatter = await generateFrontmatter(title, config);
       const filePath = path.join(config.blogDir, `${fileName}.md`);
 
       await pfs.write(filePath, frontmatter);
@@ -28,11 +37,53 @@ export function makeNewCommand({ config, pfs }: Deps) {
   });
 }
 
-function generateFrontmatter(title: string): string {
+async function generateFrontmatter(
+  title: string,
+  config: Config,
+): Promise<string> {
+  const description = await makeDescription(title);
+  const now = new Date();
+
   const data = {
-    title,
-    date: new Date().toISOString(),
+    [config.titleKey]: title,
+    [config.publishedAtKey]: now,
+    [config.modifiedAtKey]: now,
+    [config.authorKey]: config.author,
+    [config.draftKey]: true,
+    [config.descriptionKey]: description,
+    [config.tagsKey]: [],
   };
 
   return matter.stringify("", data);
+}
+
+async function makeDescription(title: string): Promise<string> {
+  const description = await text({
+    message: "Enter a description for the post:",
+    defaultValue: title,
+  });
+
+  if (isCancel(description)) {
+    return "";
+  }
+
+  return description;
+}
+
+async function generateTitle(): Promise<string> {
+  const title = await text({
+    message: "Enter a title for the post:",
+    validate: (value) => {
+      if (!value) {
+        return "Title required";
+      }
+      return undefined;
+    },
+  });
+
+  if (isCancel(title)) {
+    return "";
+  }
+
+  return title;
 }

@@ -1,4 +1,11 @@
-// this is so that testing works locally
 {
-  "blogDir": "./test/src/blog"
+  "blogDir": "./test/src/blog",
+  "author": "Wendy",
+  "publishedAtKey": "publishedAt",
+  "modifiedAtKey": "updatedAt",
+  "authorKey": "author",
+  "draftKey": "draft",
+  "descriptionKey": "description",
+  "tagsKey": "tags",
+  "titleKey": "title"
 }

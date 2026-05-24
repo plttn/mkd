@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { run, subcommands } from "cmd-ts";
 import { PoweredFileSystem } from "pwd-fs";
-import { loadConfig } from "./deps";
+import { loadConfig } from "./lib/deps";
 import { makeNewCommand } from "./commands/new";
+import { makePublishCommand } from "./commands/publish";
 
 async function main() {
   const pfs = new PoweredFileSystem();
@@ -13,6 +14,7 @@ async function main() {
     name: "mkd",
     cmds: {
       new: makeNewCommand(deps),
+      publish: makePublishCommand(deps),
     },
   });
 
