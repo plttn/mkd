@@ -26,13 +26,6 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.2.1",
-      "onFail": "download"
-    }
-  },
   "packageManager": "pnpm@11.2.1",
   "devDependencies": {
     "@types/node": "^25.9.1",
