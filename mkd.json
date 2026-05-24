@@ -1,0 +1,4 @@
+// this is so that testing works locally
+{
+  "blogDir": "./test/src/blog"
+}
