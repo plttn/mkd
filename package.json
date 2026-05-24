@@ -1,5 +1,5 @@
 {
-  "name": "mkd",
+  "name": "@plttn/mkd",
   "version": "0.0.2",
   "description": "",
   "scripts": {
@@ -11,9 +11,13 @@
     "mkd": "dist/index.js"
   },
   "files": [
-    "dist",
-    "README.md",
-    "src/index.ts"
+    "dist/**/**",
+    "docs/**/**",
+    "!**/*.spec.*",
+    "!**/*.json",
+    "!**/*.tsbuildinfo",
+    "LICENSE",
+    "README.md"
   ],
   "main": "./dist/index.js",
   "exports": {
