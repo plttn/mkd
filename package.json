@@ -4,7 +4,7 @@
   "description": "A tool for managing markdown blog posts",
   "scripts": {
     "dev": "tsx ./src/index.ts",
-    "build": "tsup",
+    "build": "tsdown",
     "prepublishOnly": "pnpm run build",
     "ci:publish": "pnpm build && changeset publish"
   },
@@ -33,7 +33,7 @@
     "@changesets/cli": "^2.31.0",
     "@types/node": "^25.9.1",
     "prettier": "3.8.3",
-    "tsup": "^8.5.1",
+    "tsdown": "^0.22.0",
     "tsx": "^4.22.3",
     "typescript": "^6.0.3"
   },

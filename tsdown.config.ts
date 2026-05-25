@@ -1,5 +1,5 @@
 // tsup.config.ts
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
   entry: ["src/index.ts"], // adjust to your entry(s)
@@ -9,5 +9,4 @@ export default defineConfig({
   clean: true,
   target: "node16",
   platform: "node",
-  splitting: false,
 });
