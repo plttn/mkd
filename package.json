@@ -1,6 +1,6 @@
 {
   "name": "@plttn/mkd",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A tool for managing markdown blog posts",
   "scripts": {
     "dev": "tsx ./src/index.ts",
