@@ -47,7 +47,7 @@ async function generateFrontmatter(
 
   const data = {
     [config.titleKey]: title,
-    [config.publishedAtKey]: "3000-01-01T00:00:00Z",
+    [config.publishedAtKey]: new Date("3000-01-01T00:00:00Z"),
     [config.authorKey]: config.author,
     [config.draftKey]: true,
     [config.descriptionKey]: description,
