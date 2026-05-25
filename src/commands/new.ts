@@ -1,9 +1,9 @@
 import path from "node:path";
+import matter from "@11ty/gray-matter";
 import { intro, isCancel, outro, text } from "@clack/prompts";
 import slugify from "@sindresorhus/slugify";
 import { command, restPositionals, string } from "cmd-ts";
 import filenamify from "filenamify";
-import matter from "@11ty/gray-matter";
 import type { Config, Deps } from "../lib/deps";
 
 export function makeNewCommand({ config, pfs }: Deps) {

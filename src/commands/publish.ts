@@ -1,6 +1,6 @@
+import matter from "@11ty/gray-matter";
 import { autocomplete, intro, isCancel, outro } from "@clack/prompts";
 import { command } from "cmd-ts";
-import matter from "@11ty/gray-matter";
 import {
   type Post,
   parseFrontmatter,
