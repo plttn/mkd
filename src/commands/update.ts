@@ -9,8 +9,6 @@ import {
 } from "../lib/commands";
 import type { Config, Deps } from "../lib/deps";
 
-type Frontmatter = Record<string, unknown>;
-
 export function makeUpdateCommand({ config, pfs }: Deps) {
 	return command({
 		name: "update",

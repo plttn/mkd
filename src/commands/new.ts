@@ -32,7 +32,7 @@ export function makeNewCommand({ config, pfs }: Deps) {
 			const fileName = filenamify(slug);
 			const frontmatter = await generateFrontmatter(title, config);
 			const filePath = path.join(config.blogDir, `${fileName}.md`);
-
+			outro(`${title} created successfully`);
 			await pfs.write(filePath, frontmatter);
 		},
 	});

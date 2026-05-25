@@ -103,7 +103,7 @@ export function makeInitCommand({ config, pfs }: Deps) {
 				titleKey: String(titleKey),
 			};
 
-			await pfs.write("./mkd.json", JSON.stringify(newConfig, null, 2) + "\n");
+			await pfs.write("./mkd.json", `${JSON.stringify(newConfig, null, 2)}\n`);
 
 			outro("Configuration saved to mkd.json");
 		},
