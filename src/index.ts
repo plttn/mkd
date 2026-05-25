@@ -9,25 +9,25 @@ import { makeUpdateCommand } from "./commands/update";
 import { loadConfig } from "./lib/deps";
 
 async function main() {
-	const pfs = new PoweredFileSystem();
-	const config = await loadConfig(pfs);
-	const deps = { config, pfs };
+  const pfs = new PoweredFileSystem();
+  const config = await loadConfig(pfs);
+  const deps = { config, pfs };
 
-	const app = subcommands({
-		name: "mkd",
-		cmds: {
-			new: makeNewCommand(deps),
-			publish: makePublishCommand(deps),
-			update: makeUpdateCommand(deps),
-			unpublish: makeUnPublishCommand(deps),
-			init: makeInitCommand(deps),
-		},
-	});
+  const app = subcommands({
+    name: "mkd",
+    cmds: {
+      new: makeNewCommand(deps),
+      publish: makePublishCommand(deps),
+      update: makeUpdateCommand(deps),
+      unpublish: makeUnPublishCommand(deps),
+      init: makeInitCommand(deps),
+    },
+  });
 
-	await run(app, process.argv.slice(2));
+  await run(app, process.argv.slice(2));
 }
 
 main().catch((error) => {
-	console.error(error);
-	process.exit(1);
+  console.error(error);
+  process.exit(1);
 });
