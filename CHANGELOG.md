@@ -1,5 +1,11 @@
 # @plttn/mkd
 
+## 0.2.2
+
+### Patch Changes
+
+- ed931b8: update to tsdown instead of tsup
+
 ## 0.2.1
 
 ### Patch Changes
