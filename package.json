@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tsx ./src/index.ts",
     "build": "tsup",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "ci:publish": "pnpm build && changeset publish --access public"
   },
   "type": "module",
   "bin": {
