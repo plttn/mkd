@@ -1,59 +1,59 @@
+import { autocomplete, intro, isCancel, outro } from "@clack/prompts";
 import { command } from "cmd-ts";
-import { autocomplete, isCancel, intro, outro } from "@clack/prompts";
 import matter from "gray-matter";
-import type { Config, Deps } from "../lib/deps";
 import {
-  readPosts,
-  postsToOptions,
-  findPostByFile,
-  Post,
+	findPostByFile,
+	type Post,
+	postsToOptions,
+	readPosts,
 } from "../lib/commands";
+import type { Config, Deps } from "../lib/deps";
 
 type Frontmatter = Record<string, unknown>;
 
 export function makeUpdateCommand({ config, pfs }: Deps) {
-  return command({
-    name: "update",
-    description: "Update a post's modified date",
-    args: {},
-    handler: async () => {
-      const posts = await readPosts(pfs, config);
-      const post = await getPostToUpdate(posts, config);
-      if (!post) return;
+	return command({
+		name: "update",
+		description: "Update a post's modified date",
+		args: {},
+		handler: async () => {
+			const posts = await readPosts(pfs, config);
+			const post = await getPostToUpdate(posts, config);
+			if (!post) return;
 
-      await updatePostDate(post, { config, pfs });
-    },
-  });
+			await updatePostDate(post, { config, pfs });
+		},
+	});
 }
 
 async function getPostToUpdate(
-  posts: Post[],
-  config: Config,
+	posts: Post[],
+	config: Config,
 ): Promise<Post | null> {
-  const options = postsToOptions(posts, config);
+	const options = postsToOptions(posts, config);
 
-  intro("Update a post");
+	intro("Update a post");
 
-  const selected = await autocomplete({
-    message: "Select post to update",
-    options,
-  });
+	const selected = await autocomplete({
+		message: "Select post to update",
+		options,
+	});
 
-  if (isCancel(selected)) {
-    outro("Update cancelled.");
-    return null;
-  }
-  outro("Post updated.");
+	if (isCancel(selected)) {
+		outro("Update cancelled.");
+		return null;
+	}
+	outro("Post updated.");
 
-  const found = findPostByFile(posts, selected as string);
-  return found ?? null;
+	const found = findPostByFile(posts, selected as string);
+	return found ?? null;
 }
 
 async function updatePostDate(post: Post, deps: Deps) {
-  const parsed = matter(post.content);
-  const fm = parsed.data as Record<string, unknown>;
-  fm[deps.config.modifiedAtKey] = new Date();
-  const updatedContent = matter.stringify(parsed.content, fm);
-  await deps.pfs.write(`${deps.config.blogDir}/${post.file}`, updatedContent);
-  return { ...post, content: updatedContent };
+	const parsed = matter(post.content);
+	const fm = parsed.data as Record<string, unknown>;
+	fm[deps.config.modifiedAtKey] = new Date();
+	const updatedContent = matter.stringify(parsed.content, fm);
+	await deps.pfs.write(`${deps.config.blogDir}/${post.file}`, updatedContent);
+	return { ...post, content: updatedContent };
 }
