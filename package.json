@@ -10,7 +10,7 @@
   },
   "type": "module",
   "bin": {
-    "mkd": "dist/index.js"
+    "mkd": "dist/index.cjs"
   },
   "files": [
     "dist"
