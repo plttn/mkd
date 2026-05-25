@@ -6,7 +6,7 @@
     "dev": "tsx ./src/index.ts",
     "build": "tsup",
     "prepublishOnly": "pnpm run build",
-    "ci:publish": "pnpm build && changeset publish --access public"
+    "ci:publish": "pnpm build && changeset publish"
   },
   "type": "module",
   "bin": {
