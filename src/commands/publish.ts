@@ -4,6 +4,7 @@ import {
   isCancel,
   intro,
   outro,
+  autocomplete,
 } from "@clack/prompts";
 import matter from "gray-matter";
 import type { Config, Deps } from "../lib/deps";
@@ -41,7 +42,7 @@ async function getPostsToPublish(
   const options = postsToOptions(drafts, config);
   intro("Publishing posts");
 
-  const selected = await autocompleteMultiselect({
+  const selected = await autocomplete({
     message: "Select posts to publish",
     options,
   });
@@ -57,9 +58,11 @@ async function getPostsToPublish(
 }
 
 async function updateDraftFrontMatter(draft: Post, deps: Deps) {
+  const now = new Date();
   const parsed = matter(draft.content);
   const fm = parsed.data as Record<string, unknown>;
   fm[deps.config.draftKey] = false;
+  fm[deps.config.publishedAtKey] = now;
   const updatedContent = matter.stringify(parsed.content, fm);
   await deps.pfs.write(`${deps.config.blogDir}/${draft.file}`, updatedContent);
   return { ...draft, content: updatedContent };

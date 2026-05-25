@@ -43,11 +43,11 @@ async function generateFrontmatter(
   config: Config,
 ): Promise<string> {
   const description = await makeDescription(title);
-  const now = new Date();
+  // const now = new Date();
 
   const data = {
     [config.titleKey]: title,
-    [config.publishedAtKey]: now,
+    [config.publishedAtKey]: "3000-01-01T00:00:00Z",
     [config.authorKey]: config.author,
     [config.draftKey]: true,
     [config.descriptionKey]: description,
