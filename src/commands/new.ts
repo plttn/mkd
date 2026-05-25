@@ -3,7 +3,7 @@ import { intro, isCancel, outro, text } from "@clack/prompts";
 import slugify from "@sindresorhus/slugify";
 import { command, restPositionals, string } from "cmd-ts";
 import filenamify from "filenamify";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import type { Config, Deps } from "../lib/deps";
 
 export function makeNewCommand({ config, pfs }: Deps) {
@@ -38,10 +38,7 @@ export function makeNewCommand({ config, pfs }: Deps) {
   });
 }
 
-async function generateFrontmatter(
-  title: string,
-  config: Config,
-): Promise<string> {
+async function generateFrontmatter(title: string, config: Config): Promise<string> {
   const description = await makeDescription(title);
   // const now = new Date();
 

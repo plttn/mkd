@@ -1,12 +1,7 @@
 import { autocomplete, intro, isCancel, outro } from "@clack/prompts";
 import { command } from "cmd-ts";
-import matter from "gray-matter";
-import {
-  findPostByFile,
-  type Post,
-  postsToOptions,
-  readPosts,
-} from "../lib/commands";
+import matter from "@11ty/gray-matter";
+import { findPostByFile, type Post, postsToOptions, readPosts } from "../lib/commands";
 import type { Config, Deps } from "../lib/deps";
 
 export function makeUpdateCommand({ config, pfs }: Deps) {
@@ -24,10 +19,7 @@ export function makeUpdateCommand({ config, pfs }: Deps) {
   });
 }
 
-async function getPostToUpdate(
-  posts: Post[],
-  config: Config,
-): Promise<Post | null> {
+async function getPostToUpdate(posts: Post[], config: Config): Promise<Post | null> {
   const options = postsToOptions(posts, config);
 
   intro("Update a post");

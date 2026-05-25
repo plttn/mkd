@@ -1,4 +1,4 @@
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import type { Deps } from "./deps";
 
 export type GetAllTagsOptions = {
@@ -14,17 +14,12 @@ export type GetAllTagsOptions = {
  * This implementation uses the PoweredFileSystem API (pfs) for all path resolution and IO
  * instead of `path.join` so it respects the pfs instance's `pwd` resolution semantics.
  */
-export async function getAllTags(
-  deps: Deps,
-  opts: GetAllTagsOptions = {},
-): Promise<string[]> {
+export async function getAllTags(deps: Deps, opts: GetAllTagsOptions = {}): Promise<string[]> {
   const { pfs, config } = deps;
   const { concurrency = 8, lowerCase = true, sort = true } = opts;
 
   const files = (await pfs.readdir(config.blogDir)) as string[];
-  const mdFiles = files.filter(
-    (f) => f.endsWith(".md") || f.endsWith(".markdown"),
-  );
+  const mdFiles = files.filter((f) => f.endsWith(".md") || f.endsWith(".markdown"));
 
   // split into batches of size `concurrency`
   const batches: string[][] = [];

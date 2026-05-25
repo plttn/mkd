@@ -1,6 +1,6 @@
 import { autocomplete, intro, isCancel, outro } from "@clack/prompts";
 import { command } from "cmd-ts";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import {
   type Post,
   parseFrontmatter,
@@ -17,9 +17,7 @@ export function makePublishCommand({ config, pfs }: Deps) {
     args: {},
     handler: async () => {
       const posts = await readPosts(pfs, config);
-      const drafts = posts.filter(
-        (post) => parseFrontmatter(post)[config.draftKey] === true,
-      );
+      const drafts = posts.filter((post) => parseFrontmatter(post)[config.draftKey] === true);
       const selected = await getPostsToPublish(drafts, config);
 
       for (const draft of selected) {
@@ -29,10 +27,7 @@ export function makePublishCommand({ config, pfs }: Deps) {
   });
 }
 
-async function getPostsToPublish(
-  drafts: Post[],
-  config: Config,
-): Promise<Post[]> {
+async function getPostsToPublish(drafts: Post[], config: Config): Promise<Post[]> {
   const options = postsToOptions(drafts, config);
   intro("Publishing posts");
 
@@ -48,10 +43,7 @@ async function getPostsToPublish(
 
   outro("Posts undrafted...");
 
-  return selectedValuesToPosts(
-    Array.isArray(selected) ? selected : [selected],
-    drafts,
-  );
+  return selectedValuesToPosts(Array.isArray(selected) ? selected : [selected], drafts);
 }
 
 async function updateDraftFrontMatter(draft: Post, deps: Deps) {

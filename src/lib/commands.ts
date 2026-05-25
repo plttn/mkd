@@ -1,4 +1,4 @@
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import type { Config, Deps } from "./deps";
 
 export type Post = {
@@ -9,10 +9,7 @@ export type Post = {
 export type Frontmatter = Record<string, unknown>;
 
 /** Read all files from the blog directory and return them as Post objects */
-export async function readPosts(
-  pfs: Deps["pfs"],
-  config: Config,
-): Promise<Post[]> {
+export async function readPosts(pfs: Deps["pfs"], config: Config): Promise<Post[]> {
   const files = (await pfs.readdir(config.blogDir)) as string[];
   const posts: Post[] = [];
 
@@ -45,17 +42,11 @@ export function postsToOptions(posts: Post[], config: Config) {
 }
 
 /** Take the raw selected values returned by the prompt and return matching Post[] */
-export function selectedValuesToPosts(
-  selected: string[] | symbol,
-  posts: Post[],
-): Post[] {
+export function selectedValuesToPosts(selected: string[] | symbol, posts: Post[]): Post[] {
   if (typeof selected === "symbol") return [];
   return posts.filter((p) => selected.includes(p.file));
 }
 
-export function findPostByFile(
-  posts: Post[],
-  fileName: string,
-): Post | undefined {
+export function findPostByFile(posts: Post[], fileName: string): Post | undefined {
   return posts.find((p) => p.file === fileName);
 }
