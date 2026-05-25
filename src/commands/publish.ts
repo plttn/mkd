@@ -1,11 +1,5 @@
 import { command } from "cmd-ts";
-import {
-  autocompleteMultiselect,
-  isCancel,
-  intro,
-  outro,
-  autocomplete,
-} from "@clack/prompts";
+import { isCancel, intro, outro, autocomplete } from "@clack/prompts";
 import matter from "gray-matter";
 import type { Config, Deps } from "../lib/deps";
 import {
@@ -43,7 +37,7 @@ async function getPostsToPublish(
   intro("Publishing posts");
 
   const selected = await autocomplete({
-    message: "Select posts to publish",
+    message: "Select post to publish",
     options,
   });
 
@@ -54,7 +48,10 @@ async function getPostsToPublish(
 
   outro("Posts undrafted...");
 
-  return selectedValuesToPosts(selected, drafts);
+  return selectedValuesToPosts(
+    Array.isArray(selected) ? selected : [selected],
+    drafts,
+  );
 }
 
 async function updateDraftFrontMatter(draft: Post, deps: Deps) {
