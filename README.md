@@ -28,3 +28,9 @@ You're now ready to make whatever publishing process you use.
 
 - Edit the slug of the post rather than generating one
 - More control over the draft setting (right now it's a forced boolean with `true` meaning it's a draft)
+
+
+## Acknowledgments
+
+- Thanks to [Steve Simkins](https://stevedylan.dev/) for [Sequoia](https://sequoia.pub)
+    which was the inspiration for the config file and key mapping.
