@@ -33,7 +33,7 @@
     "@biomejs/biome": "2.5.2",
     "@changesets/cli": "2.31.0",
     "@types/node": "25.9.4",
-    "prettier": "3.8.3",
+    "prettier": "3.9.4",
     "tsdown": "0.22.3",
     "tsx": "4.23.0",
     "typescript": "6.0.3"
