@@ -32,7 +32,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.2",
     "@changesets/cli": "2.31.0",
-    "@types/node": "25.9.4",
+    "@types/node": "25.9.5",
     "prettier": "3.9.4",
     "tsdown": "0.22.3",
     "tsx": "4.23.0",
