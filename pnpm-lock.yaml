@@ -25,7 +25,7 @@ importers:
         version: 7.0.2
       pwd-fs:
         specifier: ^3.5.4
-        version: 3.5.7
+        version: 3.5.8
     devDependencies:
       '@biomejs/biome':
         specifier: 2.5.7
@@ -888,8 +888,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  pwd-fs@3.5.7:
-    resolution: {integrity: sha512-VEA9PCj5rjZustn7YJHwXsIhqU/kYeF7bk48dZMG3nfMWjl+RZCJlwr8raAhe8HzjuknJ1JTdnSMvquPwk/viw==}
+  pwd-fs@3.5.8:
+    resolution: {integrity: sha512-Yb7pP3LhKs272Pu1JnCEZ9Wb/6MOvnRWIVuhv1ZO2UnLQ42SRQCGWKknt2Cj42DSZRWjeGhYUa8WiDgQT5FxHQ==}
     engines: {node: '>=14.18.0'}
 
   quansync@0.2.11:
@@ -1826,7 +1826,7 @@ snapshots:
 
   prettier@3.9.4: {}
 
-  pwd-fs@3.5.7: {}
+  pwd-fs@3.5.8: {}
 
   quansync@0.2.11: {}
 
