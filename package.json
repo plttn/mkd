@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "tsx ./src/index.ts",
     "build": "tsdown",
+    "lint": "biome check .",
     "prepublishOnly": "pnpm run build",
     "ci:publish": "pnpm build && changeset publish"
   },
