@@ -40,7 +40,7 @@
     "@sindresorhus/slugify": "^3.0.0",
     "cmd-ts": "^0.15.0",
     "filenamify": "^7.0.1",
-    "@11ty/gray-matter": "^2.0.2",
+    "@11ty/gray-matter": "^3.0.0",
     "pwd-fs": "^3.5.4"
   },
   "repository": {
